@@ -105,7 +105,15 @@ if ($payment_status == "Completed" AND $receiver_email == $paypal) {
 
 
 
-			}  elseif($item == $sitename." Top Navigation Link ".$userid) {
+			}  elseif($item == $sitename." Daily Bonus ".$userid) {
+	
+		$rented = $_POST['option_selection2'];
+		mysql_query("insert into dailybonus (userid,rented) values('$userid','$rented')");
+
+		mysql_query("INSERT INTO transactions VALUES ('id','".$userid."','Paypal payment - Daily Bonus $rented','".time()."','$payment_amount\$')");	
+											
+				
+			} elseif($item == $sitename." Top Navigation Link ".$userid) {
 				mysql_query("INSERT INTO transactions VALUES ('id', '".$userid."','Paypal payment - ".$quantity." top navigation link','".time()."','$payment_amount\$')");
 				
 				while($quantity > 0) {
